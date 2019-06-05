@@ -1,6 +1,6 @@
 #require "taobites/cli/version"
 #require 'pry'
-
+#make sure you require relative here ALL the classes!
 module Taobites
   module Cli
     class Error < StandardError; end
