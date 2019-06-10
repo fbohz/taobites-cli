@@ -8,9 +8,6 @@ require_relative "taobites/cli"
 require_relative "taobites/scraper"
 require_relative "taobites/taobites"
 
-module Taobites
-  
-end 
 
 
 
