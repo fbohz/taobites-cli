@@ -2,7 +2,7 @@ class Taobites::CLI
   
   def call 
     puts "Hola"
-    binding.pry
+   # binding.pry
   end 
   
 end   
