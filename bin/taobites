@@ -2,4 +2,4 @@
 
 require_relative '../lib/environment'
 
-Taobites::CLI.new.call
+Taobites::CLI.new.run
