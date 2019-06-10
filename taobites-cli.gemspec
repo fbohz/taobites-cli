@@ -5,7 +5,7 @@ require "taobites/cli/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "taobites-cli"
-  spec.version       = Taobites::Cli::VERSION
+  spec.version       = Taobites::VERSION
   spec.authors       = ["'Felipe Bohorquez'"]
   spec.email         = ["'fbohorqu@hotmail.com'"]
 

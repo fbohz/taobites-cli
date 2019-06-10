@@ -1,5 +1,5 @@
 #example
-#require 'pry'
+require 'pry'
 require 'open-uri'
 require 'nokogiri'
 
