@@ -1,5 +1,3 @@
-#require "./assets/taotechip.html"
-
 class Taobites::Scraper
  #doc = Nokogiri::HTML(open(""))
  #puts doc.css("#CSS-Selector-Here")
@@ -37,8 +35,38 @@ class Taobites::Scraper
     end   
   end 
   
-  
- #binding.pry
-end 
+  web_section = 9 #rand(1..98)
+   if web_section == 9
+     doc = Nokogiri::HTML(open("http://nothingistic.org/library/chuangtzu/chuang0#{web_section}.html"))
+      puts "Retrieving your Taobite.."
 
-#binding.pry
+        # sleep 2
+        # puts ".."
+        # sleep 1
+        # puts "..."
+        # sleep 2
+        # puts "...."
+      chapter_num = doc.css(".section2").text.match(/\d/).to_s
+      chapter_title = doc.css(".section3").text
+      
+        # sleep 1
+      puts "Excerpt from Chapter #{chapter_num}: #{chapter_title} \n"    
+        # sleep 1
+        remove = { :prev => "previous page", :next => "next page" }
+       
+      
+      content = doc.css("div#content")
+      #assigns and removes reduntant title
+      remove = content.css("h3").text
+      excerpt = content.text.gsub(remove, "")
+      #removes next, previous page text 
+      excerpt = excerpt.gsub(/(previous page |next page)/, "")
+       binding.pry
+      
+       
+   else 
+     doc = Nokogiri::HTML(open("http://nothingistic.org/library/chuangtzu/chuang#{web_section}.html"))
+  end 
+
+binding.pry
+end 
