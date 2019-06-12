@@ -1,4 +1,3 @@
-#example
 require 'pry'
 require 'open-uri'
 require 'nokogiri'
@@ -6,7 +5,7 @@ require 'nokogiri'
 require_relative "taobites/cli/version"
 require_relative "taobites/cli"
 require_relative "taobites/scraper"
-require_relative "taobites/taobites"
+require_relative "taobites/taobite"
 
 
 

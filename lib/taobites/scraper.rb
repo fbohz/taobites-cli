@@ -1,5 +1,5 @@
 class Scraper
- doc = Nokogiri::HTML(open("http://learn-co-curriculum.github.io/site-for-scraping/courses"))
+ doc = Nokogiri::HTML(open("http://htmlpreview.github.io/?https://github.com/fbohz/juega/blob/master/Scrape/Taobites/taotechip.html"))
  #puts doc.css("#CSS-Selector-Here")
- #binding.pry
+ binding.pry
 end 
