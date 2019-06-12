@@ -37,7 +37,7 @@ class Taobites::Scraper
   
   def self.new_zz_bite #must refactor
     web_section = rand(1..98)
-     if web_section == 9
+     if web_section < 9
        doc = Nokogiri::HTML(open("http://nothingistic.org/library/chuangtzu/chuang0#{web_section}.html"))
         puts "Retrieving your Taobite.."
           # sleep 2
