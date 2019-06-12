@@ -93,9 +93,10 @@ class Taobites::CLI
       puts "..."
       sleep 2
       puts "...."
-    puts "Chapter: #{taobite_object.chapter}\n" unless taobite_object.passage.include?("Your lucky byte returned")
+    puts "Chapter: #{taobite_object.chapter}" unless taobite_object.passage.include?("Your lucky byte returned")
     sleep 1
     puts "#{taobite_object.passage}\n"
+    sleep 2  
   end 
   
   def zz_printer(taobite_object)
@@ -107,9 +108,10 @@ class Taobites::CLI
           sleep 2
           puts "...."
       puts "Excerpt from Chapter #{taobite_object.chapter}\n"    
-          sleep 1  
+          sleep 2  
       puts "#{taobite_object.passage[0..1500]...}" #truncates to only the first 1500 words or so
-      puts "For the Complete Chapter: #{taobite_object.url}\n"
+      puts "\nWanna read more? See the complete Chapter at: #{taobite_object.url}\n"
+      sleep 4  
   end 
   
 end   
