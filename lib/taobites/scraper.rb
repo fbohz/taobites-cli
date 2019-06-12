@@ -7,7 +7,7 @@ class Taobites::Scraper
  chapter = rand(0..82)
   if chapter == 0 || chapter == 82
     puts "\nWow! You hit a byte! Lets see if you get lucky.."  
-    doc = Nokogiri::HTML(open("./assets/taotechip.html"))
+    doc = Nokogiri::HTML(open("./assets/taotechipv2.html"))
     chapter_chip = rand(1..81)
     chapter_text = doc.css("##{chapter_chip}").text
       sleep 2
