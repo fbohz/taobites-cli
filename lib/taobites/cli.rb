@@ -1,7 +1,7 @@
 class Taobites::CLI
   
   def run 
-    puts "Welcome to your daily dosis of Tao passages!\n\n"
+    puts "\n\nWelcome to your daily dosis of Taobites!\n\n\n"
    # binding.pry
   end 
   

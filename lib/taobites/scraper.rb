@@ -3,7 +3,7 @@ class Taobites::Scraper
  #puts doc.css("#CSS-Selector-Here")
  
  
- def self.new_ddj_bite
+ def self.new_ddj_bite #must refactor
  chapter = rand(0..82)
   if chapter == 0 || chapter == 82
     puts "\nWow! You hit a byte! Lets see if you get lucky.."  
@@ -35,38 +35,34 @@ class Taobites::Scraper
     end   
   end 
   
-  web_section = 9 #rand(1..98)
-   if web_section == 9
-     doc = Nokogiri::HTML(open("http://nothingistic.org/library/chuangtzu/chuang0#{web_section}.html"))
-      puts "Retrieving your Taobite.."
-
-        # sleep 2
-        # puts ".."
-        # sleep 1
-        # puts "..."
-        # sleep 2
-        # puts "...."
-      chapter_num = doc.css(".section2").text.match(/\d/).to_s
-      chapter_title = doc.css(".section3").text
-      
-        # sleep 1
-      puts "Excerpt from Chapter #{chapter_num}: #{chapter_title} \n"    
-        # sleep 1
-        remove = { :prev => "previous page", :next => "next page" }
-       
-      
-      content = doc.css("div#content")
-      #assigns and removes reduntant title
-      remove = content.css("h3").text
-      excerpt = content.text.gsub(remove, "")
-      #removes next, previous page text 
-      excerpt = excerpt.gsub(/(previous page |next page)/, "")
-       binding.pry
-      
-       
-   else 
-     doc = Nokogiri::HTML(open("http://nothingistic.org/library/chuangtzu/chuang#{web_section}.html"))
+  def self.new_zz_bite #must refactor
+    web_section = rand(1..98)
+     if web_section == 9
+       doc = Nokogiri::HTML(open("http://nothingistic.org/library/chuangtzu/chuang0#{web_section}.html"))
+        puts "Retrieving your Taobite.."
+          # sleep 2
+          # puts ".."
+          # sleep 1
+          # puts "..."
+          # sleep 2
+          # puts "...."
+        chapter_num = doc.css(".section2").text.match(/\d/).to_s
+        chapter_title = doc.css(".section3").text
+          # sleep 1
+        puts "Excerpt from Chapter #{chapter_num}: #{chapter_title} \n"    
+          # sleep 1
+          content = doc.css("div#content")
+          #assigns and removes reduntant title
+          remove_title = content.css("h3").text
+        excerpt = content.text.gsub(remove_title, "")
+        #removes next, previous page text 
+        excerpt = excerpt.gsub(/(previous page |next page)/, "")
+         binding.pry
+    else 
+        #code above should be put into a method. Because it will repeat pretty much the same.
+      #THIS WILL NOT RUN!! BECAUSE IT NEEDS A HELPER METHOD CALLED SAME AS ABOVE!
+      doc = Nokogiri::HTML(open("http://nothingistic.org/library/chuangtzu/chuang#{web_section}.html"))
+   end 
   end 
-
-binding.pry
+#binding.pry
 end 
