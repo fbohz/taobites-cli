@@ -16,8 +16,8 @@ class Taobites::CLI
   
   def list
       
-    puts "\n-For a Daodejing excrept please type DDJ."
-    puts "-For a Zhuangzi excrept please type ZZ."
+    puts "\n-For a Daodejing excerpt please type DDJ."
+    puts "-For a Zhuangzi excerpt please type ZZ."
     puts "-To list all available commands please type list or ls."
     puts "-To quit please type q."
 
