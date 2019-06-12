@@ -60,8 +60,6 @@ class Taobites::CLI
       taobite_object = Taobites::Taobite.new.new_taobite_zz
       self.zz_printer(taobite_object)
       self.return_menu?
-    # when "q", "quit", "exit", "exit!"
-    #   self.quit 
     else 
       puts "ERROR! wrong input received. Try again."
       sleep 2
@@ -110,7 +108,8 @@ class Taobites::CLI
           puts "...."
       puts "Excerpt from Chapter #{taobite_object.chapter}\n"    
           sleep 1  
-      puts "#{taobite_object.passage}\n"
+      puts "#{taobite_object.passage[0..1500]...}" #truncates to only the first 1500 words or so
+      puts "For the Complete Chapter: #{taobite_object.url}\n"
   end 
   
 end   

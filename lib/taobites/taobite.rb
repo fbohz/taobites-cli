@@ -1,12 +1,13 @@
 
 class Taobites::Taobite 
-  attr_accessor :book, :chapter, :passage 
+  attr_accessor :book, :chapter, :passage, :url  
   @@all = []
   
-  def initialize(book=nil, chapter=nil, passage=nil)
+  def initialize(book=nil, chapter=nil, passage=nil, url=nil)
     @book = book
     @chapter = chapter
     @passage = passage
+    @url = url
     @@all << self
   end 
   
@@ -39,8 +40,3 @@ class Taobites::Taobite
   
 end   
 
-
-#replaced HEREDOC. Seem to be causing issue. Good old puts worked.
-#Logic works! Now need to see if I can truncate a bit ZZ. Maybe provide URL for more info...Or it could be in a future version...we'll see.
-
-#Finally I'm figuring out how to truncate my ZZ passage.

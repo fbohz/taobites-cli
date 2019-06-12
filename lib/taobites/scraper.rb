@@ -6,15 +6,18 @@ class Taobites::Scraper
    taobite[:book] = "Daodejing"
     if chapter == 0 || chapter == 82
       taobite[:book] = "Daodechip! v2"
+      taobite[:url] = "http://htmlpreview.github.io/?https://github.com/fbohz/taobites-cli/blob/master/assets/taotechipv2.html"
       puts "\nWow! You hit a byte! Lets see if you get lucky.."  
       doc = Nokogiri::HTML(open("./assets/taotechipv2.html"))
       taobite[:chapter] = rand(1..81)
       taobite[:passage] = doc.css("##{taobite[:chapter]}").text
       sleep 0.5
     else 
-      doc = Nokogiri::HTML(open("http://thetaoteching.com/taoteching#{chapter}.html"))
+      html = "http://thetaoteching.com/taoteching#{chapter}.html"
+      doc = Nokogiri::HTML(open(html))
        taobite[:chapter] = chapter
        taobite[:passage] = doc.css("td#loTBody").text 
+       taobite[:url] = html
       end
     taobite
   end 
@@ -24,7 +27,9 @@ class Taobites::Scraper
     taobite = {}
     taobite[:book] = "Zhuangzi"
      if web_section < 10
-       doc = Nokogiri::HTML(open("http://nothingistic.org/library/chuangtzu/chuang0#{web_section}.html"))
+       html = "http://nothingistic.org/library/chuangtzu/chuang0#{web_section}.html"
+       doc = Nokogiri::HTML(open(html))
+       taobite[:url] = html
         chapter_num = doc.css(".section2").text.match(/\d/).to_s
         chapter_title = doc.css(".section3").text
         taobite[:chapter] = "#{chapter_num}: #{chapter_title}"
@@ -34,10 +39,13 @@ class Taobites::Scraper
         remove_title = content.css("h3").text 
         excerpt = content.text.gsub(remove_title, "") #assigns and removes reduntant title
         taobite[:passage] = excerpt.gsub(/(previous page |next page)/, "") #removes next, previous page text 
+        
     else 
       taobite = {}  
       taobite[:book] = "Zhuangzi"
-      doc = Nokogiri::HTML(open("http://nothingistic.org/library/chuangtzu/chuang#{web_section}.html"))
+      html = "http://nothingistic.org/library/chuangtzu/chuang#{web_section}.html"
+      taobite[:url] = html
+      doc = Nokogiri::HTML(open(html))
         chapter_num = doc.css(".section2").text.match(/\d/).to_s
         chapter_title = doc.css(".section3").text
       taobite[:chapter] = "#{chapter_num}: #{chapter_title}"
