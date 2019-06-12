@@ -46,7 +46,7 @@ class Taobites::Scraper
       html = "http://nothingistic.org/library/chuangtzu/chuang#{web_section}.html"
       taobite[:url] = html
       doc = Nokogiri::HTML(open(html))
-        chapter_num = doc.css(".section2").text.match(/\d/).to_s
+        chapter_num = doc.css(".section2").text.match(/\d+/).to_s
         chapter_title = doc.css(".section3").text
       taobite[:chapter] = "#{chapter_num}: #{chapter_title}"
        content = doc.css("div#content") #main container

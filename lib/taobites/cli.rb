@@ -110,7 +110,7 @@ class Taobites::CLI
       puts "Excerpt from Chapter #{taobite_object.chapter}\n"    
           sleep 2  
       puts "#{taobite_object.passage[0..1500]...}" #truncates to only the first 1500 words or so
-      puts "\nWanna read more? See the complete Chapter at: #{taobite_object.url}\n"
+      puts "\nWanna read more? See the complete Chapter #{taobite_object.chapter} at: #{taobite_object.url}\n"
       sleep 4  
   end 
   
