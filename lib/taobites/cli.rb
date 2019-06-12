@@ -8,8 +8,7 @@ class Taobites::CLI
     # puts self.menu
     # sleep 0.5
     self.selection
-    # self.return_taobite
-    Taobites::Taobite.new_taobite
+    self.return_taobite
     
   end 
 
@@ -50,14 +49,15 @@ class Taobites::CLI
     return_input = input.gsub(" ", "")
     case return_input 
     when "ddj", "daodejing", "taoteching"
-      Taobites::Scraper.new_ddj_bite #refactor
+      Taobites::Taobite.new.new_taobite_ddj
+      self.ddj_printer
     when "zz", "zhuangzi", "chuangtzu"
       puts "hi"
-      Taobites::Scraper.new_zz_bite #refactor
+      Taobites::Taobite.new.new_taobite_zz
+      self.zz_printer
     when "q", "quit", "exit", "exit!"
       self.quit 
     else 
-     # binding.pry
       puts "ERROR! wrong input received. Try again."
       sleep 2
       puts self.menu
@@ -73,10 +73,29 @@ class Taobites::CLI
     system('clear') 
   end 
   
+  def ddj_printer
+      sleep 2
+      puts ".."
+      sleep 1
+      puts "..."
+      sleep 2
+      puts "...."
+    puts "Chapter: #{taobite[:chapter]}\n" unless taobite[:passage].include?("Your lucky byte returned")
+    sleep 1
+    puts "#{taobite[:passage]}\n"
+  end 
   
-  
-  
-  
-  
+  def zz_printer
+    puts "Retrieving your Taobite.."
+          sleep 2
+          puts ".."
+          sleep 1
+          puts "..."
+          sleep 2
+          puts "...."
+      puts "Excerpt from Chapter #{taobite[:chapter]}\n"    
+          sleep 1  
+      puts "#{taobite[:passage]}\n"
+  end 
   
 end   

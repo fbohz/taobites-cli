@@ -14,16 +14,26 @@ class Taobites::Taobite
     @@all
   end 
   
-  def self.new_taobite
-    a_taobite = Taobites::Taobite.new
-    return_taobite
+  def new_taobite_ddj
+    a_taobite = self 
 	    a_taobite.tap do |taobite|
-	      taobite.each do |k,v|
+	      Taobites::Scraper.new_ddj_bite.each do |k,v|
 	        taobite.send("#{k}=", v)
 	     end 	 
 	   end 
+	   #@@all << self
+  end 
+  
+  def new_taobite_zz
+    a_taobite = self 
+      Taobites::Scraper.new_zz_bite 
+	    a_taobite.tap do |taobite|
+	      Taobites::Scraper.new_zz_bite .each do |k,v|
+	        taobite.send("#{k}=", v)
+	     end 	 
+	   end 
+	   #@@all << self
   end 
   
 end   
 
-#this is more or less the method I will test. However, I still need to refactor Scraper. Will save github and be right back.
