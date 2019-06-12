@@ -9,9 +9,6 @@ class Taobites::CLI
     self.return_text
     
   end 
-    
-    #binding.pry
-   
 
   
   def welcome 
@@ -38,6 +35,7 @@ class Taobites::CLI
   
   def selection
     puts "Please make a selection"
+    
     @input = gets.strip.downcase
     @input
   end 
@@ -46,28 +44,37 @@ class Taobites::CLI
   
   def return_text
     #puts input
-    case 
-    when input == "ddj" || "daodejing" || "taoteching"
+    return_input = input.gsub(" ", "")
+    case return_input 
+    when "ddj", "daodejing", "taoteching"
+     # binding.pry
       Taobites::Scraper.new_ddj_bite 
-    when input == "zz" || "zhuangzi" || "chuangtzu"
+    when "zz", "zhuangzi", "chuangtzu"
+      puts "hi"
       Taobites::Scraper.new_zz_bite 
-    when input == "q" || "quit" || "exit" || "exit!"
+    when "q", "quit", "exit", "exit!"
       self.quit 
     else 
-      "Error, wrong input received"
-      sleep 0.5 
+      binding.pry
+      puts "ERROR! wrong input received. Try again."
+      sleep 2
       puts self.menu
       self.selection
+      self.return_text
   end  
   
   end   
   
   def quit
-    
+    puts "Goodbye! See next time"
+    sleep 1
+    system('clear') 
   end 
   
-  #ok so its retrieving the ddj text but is not catching my input correctly. I will stop recording. My next steps will be to capture input correctly. THen I will refactor Scraper because it contains another class methods. Then I will modify CLI. So that each class does what is suppose to do. At the end I want the CLI to ask if they want another text or repeat the last one with @@all. Also will provide a lucky entry based upon the logic on appropiate class (right now I have it on Scraper.)
   
-  #Right now I'm  scraping a file (for lucky entry), a DDJ website and ZZ website for appropiate texts. Thanks! Felipe Bohorquez
+  
+  
+  
+  
   
 end   

@@ -40,28 +40,27 @@ class Taobites::Scraper
      if web_section < 10
        doc = Nokogiri::HTML(open("http://nothingistic.org/library/chuangtzu/chuang0#{web_section}.html"))
         puts "Retrieving your Taobite.."
-          # sleep 2
-          # puts ".."
-          # sleep 1
-          # puts "..."
-          # sleep 2
-          # puts "...."
+          sleep 2
+          puts ".."
+          sleep 1
+          puts "..."
+          sleep 2
+          puts "...."
         chapter_num = doc.css(".section2").text.match(/\d/).to_s
         chapter_title = doc.css(".section3").text
-          # sleep 1
         puts "Excerpt from Chapter #{chapter_num}: #{chapter_title} \n"    
-          # sleep 1
-          content = doc.css("div#content")
-          #assigns and removes reduntant title
-          remove_title = content.css("h3").text
-        excerpt = content.text.gsub(remove_title, "")
-        #removes next, previous page text 
-        excerpt = excerpt.gsub(/(previous page |next page)/, "")
-         binding.pry
+           sleep 1
+          
+        content = doc.css("div#content") #main container
+        remove_title = content.css("h3").text 
+        excerpt = content.text.gsub(remove_title, "") #assigns and removes reduntant title
+        excerpt = excerpt.gsub(/(previous page |next page)/, "") #removes next, previous page text 
+        puts "#{excerpt}\n"
+         
     else 
-        #code above should be put into a method. Because it will repeat pretty much the same.
-      #THIS WILL NOT RUN!! BECAUSE IT NEEDS A HELPER METHOD CALLED SAME AS ABOVE!
+        
       doc = Nokogiri::HTML(open("http://nothingistic.org/library/chuangtzu/chuang#{web_section}.html"))
+      puts "refactor me"
    end 
   end 
 #binding.pry
