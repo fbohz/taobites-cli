@@ -1,12 +1,15 @@
 class Taobites::CLI
   
   def run 
-    self.welcome 
-    sleep 0.5
-    puts self.menu
-    sleep 0.5
+    
+    
+    # self.welcome 
+    # sleep 0.5
+    # puts self.menu
+    # sleep 0.5
     self.selection
-    self.return_text
+    # self.return_taobite
+    Taobites::Taobite.new_taobite
     
   end 
 
@@ -42,31 +45,30 @@ class Taobites::CLI
   
  
   
-  def return_text
+  def return_taobite
     #puts input
     return_input = input.gsub(" ", "")
     case return_input 
     when "ddj", "daodejing", "taoteching"
-     # binding.pry
-      Taobites::Scraper.new_ddj_bite 
+      Taobites::Scraper.new_ddj_bite #refactor
     when "zz", "zhuangzi", "chuangtzu"
       puts "hi"
-      Taobites::Scraper.new_zz_bite 
+      Taobites::Scraper.new_zz_bite #refactor
     when "q", "quit", "exit", "exit!"
       self.quit 
     else 
-      binding.pry
+     # binding.pry
       puts "ERROR! wrong input received. Try again."
       sleep 2
       puts self.menu
       self.selection
-      self.return_text
+      self.return_taobite
   end  
   
   end   
   
   def quit
-    puts "Goodbye! See next time"
+    puts "Goodbye! See you next time"
     sleep 1
     system('clear') 
   end 
