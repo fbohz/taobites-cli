@@ -16,10 +16,11 @@ class Taobites::CLI
   
   def list
       
-    puts "\n-For a Daodejing excerpt please type DDJ."
+    puts "\n-For a Daodejing excerpt please type DDJ. There's a magic gem inside if you get lucky enough."
     puts "-For a Zhuangzi excerpt please type ZZ."
     puts "-To list all available commands please type list or ls."
-    puts "-To quit please type q."
+    puts "-Español: Para generar un texto aleatorio del Daodejing en Español, escribe las letras 'es'."
+    puts "-To QUIT: please type q."
 
     self.selection
   end
@@ -29,7 +30,7 @@ class Taobites::CLI
    end 
   
   def selection
-    puts "\nPlease make a selection. You can also type ls for all available commands"
+    puts "\nPlease make a selection. You can also type ls for all available commands"  
     
     @input = gets.strip.downcase
     @input
@@ -60,10 +61,12 @@ class Taobites::CLI
       taobite_object = Taobites::Taobite.new.new_taobite_zz
       self.zz_printer(taobite_object)
       self.return_menu?
-    else 
-      puts "ERROR! wrong input received. Try again."
-      sleep 2
+    when "sp", "spanish", "es"
+      taobite_object = Taobites::Taobite.new.new_taobite_ddj_es
+      self.ddj_es_printer(taobite_object)
       self.return_menu?
+    else 
+      self.throw_error
    end  
   end 
   
@@ -72,11 +75,18 @@ class Taobites::CLI
     res = gets.strip.downcase
     if res == "y" || res == "yes"
       self.run 
-    else 
+    elsif res == "n" || res == "no" 
       self.quit
+    else 
+      self.throw_error
     end 
   end 
   
+  def throw_error
+      puts "ERROR! wrong input received. Try again."
+      sleep 2
+      self.return_menu? 
+  end 
   
   
   def quit
@@ -95,7 +105,7 @@ class Taobites::CLI
       puts "...."
     puts "Chapter: #{taobite_object.chapter}" unless taobite_object.passage.include?("Your lucky byte returned")
     sleep 1
-    puts "#{taobite_object.passage}\n"
+    puts "\n#{taobite_object.passage}\n"
     sleep 2  
   end 
   
@@ -109,9 +119,23 @@ class Taobites::CLI
           puts "...."
       puts "Excerpt from Chapter #{taobite_object.chapter}\n"    
           sleep 2  
-      puts "#{taobite_object.passage[0..1500]...}" #truncates to only the first 1500 words or so
+      puts "\n#{taobite_object.passage[0..1500]...}" #truncates to only the first 1500 words or so
       puts "\nWanna read more? See the complete Chapter #{taobite_object.chapter} at: #{taobite_object.url}\n"
       sleep 4  
+  end 
+  
+  def ddj_es_printer(taobite_object)
+      puts "Generando tu Taobite.."
+      sleep 0.5
+      puts "espera.."
+      sleep 1.5
+      puts "..."
+      sleep 2
+      puts "...."
+    puts "Del Capitulo ##{taobite_object.chapter}, el Daodejing dice:" 
+     sleep 1
+     puts "\n#{taobite_object.passage}\n"
+     sleep 2  
   end 
   
 end   

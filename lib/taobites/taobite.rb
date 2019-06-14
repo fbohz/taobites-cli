@@ -38,5 +38,16 @@ class Taobites::Taobite
 	   a_taobite
   end 
   
+    def new_taobite_ddj_es
+    a_taobite = self 
+	    a_taobite.tap do |taobite|
+	      Taobites::Scraper.new_ddj_bite_es.each do |k,v|
+	        taobite.send("#{k}=", v)
+	     end 	 
+	   end 
+	   #@@all << self
+	   a_taobite
+  end
+  
 end   
 

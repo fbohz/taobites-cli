@@ -16,7 +16,7 @@ class Taobites::Scraper
       html = "http://thetaoteching.com/taoteching#{chapter}.html"
       doc = Nokogiri::HTML(open(html))
        taobite[:chapter] = chapter
-       taobite[:passage] = doc.css("td#loTBody").text 
+       taobite[:passage] = doc.css("td#loTBody").text.strip 
        taobite[:url] = html
       end
     taobite
@@ -38,7 +38,7 @@ class Taobites::Scraper
         content = doc.css("div#content") #main container
         remove_title = content.css("h3").text 
         excerpt = content.text.gsub(remove_title, "") #assigns and removes reduntant title
-        taobite[:passage] = excerpt.gsub(/(previous page |next page)/, "") #removes next, previous page text 
+        taobite[:passage] = excerpt.gsub(/(previous page |next page)/, "").strip #removes next, previous page text 
         
     else 
       taobite = {}  
@@ -52,9 +52,21 @@ class Taobites::Scraper
        content = doc.css("div#content") #main container
         remove_title = content.css("h3").text 
         excerpt = content.text.gsub(remove_title, "") #assigns and removes reduntant title
-        taobite[:passage] = excerpt.gsub(/(previous page |next page)/, "") #removes next, previous page text 
+        taobite[:passage] = excerpt.gsub(/(previous page |next page)/, "").strip #removes next, previous page text 
    end 
       taobite
+  end 
+  
+  def self.new_ddj_bite_es
+   chapter = rand(1..81)
+   taobite = {}
+   taobite[:book] = "El Daodejing"
+      html = "https://ratmachines.com/philosophy/tao-teh-ching-spanish/#{chapter}"
+      doc = Nokogiri::HTML(open(html))
+       taobite[:chapter] = chapter
+       taobite[:passage] = doc.css("div.plain").text.gsub(/(Capítulo AnteriorSiguiente Capítulo)/, "").chomp
+       taobite[:url] = html
+    taobite
   end 
 #binding.pry
 end 
