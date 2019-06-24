@@ -1,8 +1,6 @@
 # Taobites::Cli
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/taobites/cli`. To experiment with that code, run `bin/console` for an interactive prompt. 
-
-TODO: Delete this and the text above, and describe your gem
+My first attempt at a Ruby gem with CLI. Scrapes random pieces of text from the Dao De Jing (DDJ) and the Zhuangzi. There's also a Spanish translation option for the DDJ and if you get lucky enough a DDJ coder's interpretation.
 
 ## Installation
 
